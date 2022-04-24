@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="SimplePushButton" type="button_state_publish.py" name="button_pushed" output="screen"> </node>
+</launch>
