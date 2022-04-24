@@ -2,7 +2,7 @@
 <package format="2">
   <name>SimplePushButton</name>
   <version>0.0.0</version>
-  <description>The SimplePushButton package</description>
+  <description>The simple_push_button package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
