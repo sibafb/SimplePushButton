@@ -35,11 +35,11 @@ def cb_button_pushed( gpio, level, tick):
 
 def cb_button_led_blink(req):
     pi.write(PIN_SWITCH_LED,pigpio.HIGH)
-    sleep(0.2)
+    sleep(0.3)
     pi.write(PIN_SWITCH_LED,pigpio.LOW)
-    sleep(0.2)
+    sleep(0.3)
     pi.write(PIN_SWITCH_LED,pigpio.HIGH)
-    sleep(0.2)
+    sleep(0.3)
     pi.write(PIN_SWITCH_LED,pigpio.LOW)
 
     return True
