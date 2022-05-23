@@ -5,6 +5,10 @@ import pigpio
 import rospy
 from std_msgs.msg import Bool
 
+from simple_push_button.srv import Buttonblink
+
+from time import sleep
+
 PIN_SWITCH_SIGNAL = 23 # 16pin
 PIN_SWITCH_LED = 25    # 22pin
 
@@ -29,6 +33,20 @@ def cb_button_pushed( gpio, level, tick):
     pi.write(PIN_SWITCH_LED,pigpio.HIGH)
     rospy.loginfo("pushed")
 
+def cb_button_led_blink(req):
+    pi.write(PIN_SWITCH_LED,pigpio.HIGH)
+    sleep(0.3)
+    pi.write(PIN_SWITCH_LED,pigpio.LOW)
+    sleep(0.3)
+    pi.write(PIN_SWITCH_LED,pigpio.HIGH)
+    sleep(0.3)
+    pi.write(PIN_SWITCH_LED,pigpio.LOW)
+
+    return True
+
+rospy.Service('buttun_led_blink', Buttonblink, cb_button_led_blink)
+
+
 if __name__ == '__main__':
 
     pi.set_mode( switch_pin, pigpio.INPUT) 
@@ -40,6 +58,7 @@ if __name__ == '__main__':
     pi.callback( switch_pin, pigpio.FALLING_EDGE, cb_button_pushed)
 
     rate = rospy.Rate(50)
+
 
     try:
         while not rospy.is_shutdown():
